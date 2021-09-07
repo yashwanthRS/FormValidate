@@ -1,0 +1,35 @@
+
+<table class="table table-coloumn">
+  <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Mobile Numeber</th>
+        <th>City</th>
+        <th>Zipcode</th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of UserList">
+      <td>{{item.FirstName}}</td>
+      <td>{{item.LastName}}</td>
+      <td>{{item.UserName}}</td>
+      <td>{{item.Email}}</td>
+      <td>{{item.User_Password}}</td>
+      <td>{{item.Mobile_number}}</td>
+      <td>{{item.City}}</td>
+      <td>{{item.Zipcode}}</td>
+      <td>
+        <!-- <button type="button" class="btn btn-light mr-1"
+        >Edit</button> -->
+        <button type="button" class="btn btn-light mr-1"
+        (click)="deleteClick(item)"
+        >Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

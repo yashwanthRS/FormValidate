@@ -1,0 +1,169 @@
+<br>
+<form
+  class="form-horizontal"
+  [formGroup]="newForm"
+  (ngSubmit)="onSubmit()">
+
+  <div class="row mb-3" [ngClass]="{'has-error': ( submitted  && f.firstname.errors ) }">
+    <label for="name" class="col-sm-2 col-form-label">First Name</label>
+    <div class="col-sm-5">
+      <input type="text"
+        class="form-control"
+        id="firstname"
+        formControlName="firstname"
+        >
+        <span  class="help-block" *ngIf=" (submitted && f.firstname.invalid) || (f.firstname.touched) ">
+          <span *ngIf="f.firstname.errors?.required && submitted "> firstname is required  </span>
+          <span *ngIf="f.firstname.errors?.minlength && submitted "> firstname should be btw 2  characters </span>
+          <span *ngIf="f.firstname.errors?.maxlength && submitted "> firstname should be of 10 characters </span>
+        </span>
+    </div>
+  </div>
+  <div class="row mb-3" [ngClass]="{'has-error': ( submitted  && f.lastname.errors ) }">
+    <label for="name" class="col-sm-2 col-form-label">Last Name</label>
+    <div class="col-sm-5">
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="lastname"
+       ><span  class="help-block" *ngIf=" (submitted && f.lastname.invalid) || (f.lastname.touched) ">
+        <span *ngIf="f.lastname.errors?.maxlength && submitted "> Max of 10 characters Only </span>
+      </span>
+    </div>
+  </div>
+  <div class="row mb-3" [ngClass]="{'has-error': ( submitted  && f.username.errors ) }">
+    <label for="username" class="col-sm-2 col-form-label">User Name</label>
+    <div class="col-sm-5">
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        formControlName="username"
+        ><span  class="help-block" *ngIf=" (submitted && f.username.invalid) || (f.username.touched) ">
+
+          <span *ngIf="f.username.errors?.required && submitted "> Username is required  </span>
+          <span *ngIf="f.username.errors?.minlength && submitted "> Minimum 2 char </span>
+          <span *ngIf="f.username.errors?.maxlength && submitted "> Maximum 10 char </span>
+        </span>
+    </div>
+  </div>
+  <div class="row mb-3" [ngClass]="{'has-error': ( submitted  && f.email.errors ) }">
+    <label for="email" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-5">
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+       ><span  class="help-block" *ngIf=" (submitted && f.email.invalid) || (f.email.touched) ">
+        <span *ngIf="f.email.errors?.required && submitted "> Email is required  </span>
+        <span *ngIf="f.email.errors?.pattern && submitted "> Enter email in correct format  </span>
+      </span>
+    </div>
+  </div>
+
+ <div class="row mb-3" [ngClass]="{'has-error': ( submitted  && f.userPassword.errors ) }">
+    <label for="userPassword" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-5">
+      <input
+        type="password"
+        class="form-control"
+        id="userPassword"
+        formControlName="userPassword"
+       ><span  class="help-block" *ngIf=" (submitted && f.userPassword.invalid) || (f.userPassword.touched) ">
+        <span *ngIf="f.userPassword.errors?.required && submitted "> Password is required  </span>
+        <span *ngIf="f.userPassword.errors?.minlength && submitted "> Password should be min 2  characters </span>
+        <span *ngIf="f.userPassword.errors?.maxlength && submitted "> Password should be max 10 characters </span>
+      </span>
+    </div>
+  </div>
+ <div class="row mb-3" [ngClass]="{'has-error': ( submitted  && f.passwordConfirm.errors ) }">
+    <label for="passwordConfirm" class="col-sm-2 col-form-label">Confirm Password</label>
+    <div class="col-sm-5">
+      <input
+        type="password"
+        class="form-control"
+        id="passwordConfirm"
+        formControlName="passwordConfirm"
+        pattern="{{f.userPassword.value}}"
+        ><span  class="help-block" *ngIf=" (submitted && f.passwordConfirm.invalid) || (f.passwordConfirm.touched) ">
+          <span *ngIf="f.passwordConfirm.errors?.required && submitted "> Password is required  </span>
+          <span *ngIf="f.passwordConfirm.errors?.pattern && submitted "> Password should be same </span>
+        </span>
+    </div>
+  </div>
+
+  <div class="row mb-3" [ngClass]="{'has-error': ( submitted  && f.city.errors ) }">
+    <label for="city" class="col-sm-2 col-form-label">City</label>
+      <div class="col-sm-5">
+
+          <select
+            class="form-control"
+            formControlName="city"
+             >
+             <option ngValue="null"> Choose city </option>
+             <option *ngFor="let item of UserCity" >{{item.value}}</option>
+           <!--  <option value="Arizona">Arizona</option>
+            <option value="Gotham">Gotham</option>
+            <option value="New York">New York</option>
+            <option value="California">California</option>
+            <option value="Texas">Texas</option>
+            <option value="NJ">NJ</option> -->
+          </select><span  class="help-block" *ngIf=" (submitted && f.city.invalid) || (f.city.touched) ">
+            <span *ngIf="f.city.errors?.required && submitted "> Select a city  </span>
+          </span>
+      </div>
+    </div>
+  <div class="row mb-3" [ngClass]="{'has-error': ( submitted  && f.mobilenumber.errors ) }">
+    <label for="mobileNumber" class="col-sm-2 col-form-label">Mobile Number</label>
+    <div class="col-sm-3">
+      <input
+        type="text"
+        class="form-control"
+        id="mobilenumber"
+        formControlName="mobilenumber"
+        ><span  class="help-block" *ngIf=" (submitted && f.mobilenumber.invalid) || (f.mobilenumber.touched) ">
+          <span *ngIf="f.mobilenumber.errors?.required && submitted "> Mobile number is required  </span>
+          <span *ngIf="f.mobilenumber.errors?.minlength && submitted "> Only 10 numbers </span>
+          <span *ngIf="f.mobilenumber.errors?.maxlength && submitted "> Only 10 numbers  </span>
+          <span *ngIf="f.mobilenumber.errors?.pattern && submitted "> Only Numeber </span>
+        </span>
+    </div>
+  </div>
+  <div class="row mb-3" [ngClass]="{'has-error': ( submitted  && f.zipcode.errors ) }">
+    <label for="zipcode" class="col-sm-2 col-form-label">Zipcode</label>
+    <div class="col-sm-3">
+      <input
+        type="text"
+        class="form-control"
+        id="zipcode"
+        formControlName="zipcode"
+        ><span  class="help-block" *ngIf=" (submitted && f.zipcode.invalid) || (f.zipcode.touched) ">
+          <span *ngIf="f.zipcode.errors?.required && submitted "> Zipcode is required  </span>
+          <span *ngIf="f.zipcode.errors?.minlength && submitted "> Only 5 digits </span>
+          <span *ngIf="f.zipcode.errors?.maxlength && submitted "> Only 5 digits  </span>
+          <span *ngIf="f.zipcode.errors?.pattern && submitted "> Only Numeber </span>
+        </span>
+    </div>
+  </div>
+  <div class="row mb-3" [ngClass]="{'has-error': ( submitted  && f.firstname.errors ) }">
+    <div class="form-group form-check" >
+        <input
+          class="col-sm-2"
+          type="checkbox"
+          name="Agreement"
+          id="Agreement"
+          formControlName="agreement"
+          >
+    </div>
+          <div class="alert-form" *ngIf="f.agreement.touched && f.agreement.invalid">
+              <div class="alert-danger" style="width: max-content; " *ngIf="f.agreement.errors?.required">
+                  Agree the terms and .,......
+              </div>
+          </div>
+  </div>
+    <button type="submit" class="btn btn-primary">
+          Add
+    </button>
+</form>
